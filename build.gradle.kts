@@ -4,6 +4,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
     java
+    jacoco
 }
 
 group = "org.ulink"
@@ -64,7 +65,9 @@ tasks.withType<Test> {
     }
 }
 
-
+jacoco {
+    toolVersion = "0.8.2"
+}
 
 tasks.withType<Wrapper> {
     gradleVersion = "5.1.1"

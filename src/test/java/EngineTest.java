@@ -6,9 +6,9 @@ public class EngineTest {
 
     @Test
     void itWorks() {
-        var number = 1;
+        var number = new NumProvider();
 
-        assertThat(number).isEqualTo(1);
+        assertThat(number.get()).isEqualTo(1);
     }
 
 }
