@@ -5,6 +5,9 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 plugins {
     java
     jacoco
+    checkstyle
+    id("com.github.spotbugs") version "1.6.9"
+    id("org.sonarqube") version "2.6.2"
 }
 
 group = "org.ulink"
@@ -67,6 +70,14 @@ tasks.withType<Test> {
 
 jacoco {
     toolVersion = "0.8.2"
+}
+
+checkstyle {
+    toolVersion = "8.16"
+}
+
+spotbugs {
+    toolVersion = "3.1.10"
 }
 
 tasks.withType<Wrapper> {

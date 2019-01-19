@@ -5,4 +5,9 @@ public class NumProvider implements Supplier<Integer> {
     public Integer get() {
         return 1;
     }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }
