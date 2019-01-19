@@ -24,3 +24,12 @@ cache:
 before_install:
   - chmod +x gradlew
   - ./gradlew clean
+
+jobs:
+  include:
+    - stage: build
+      script:
+        - ./gradlew clean build
+    - stage: sonar
+      script:
+        - ./gradlew clean sonarqube
