@@ -4,6 +4,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 plugins {
     java
     jacoco
+    checkstyle
     id("org.springframework.boot") version "2.1.3.RELEASE"
     id("io.spring.dependency-management") version "1.0.6.RELEASE"
     id("com.bmuschko.docker-spring-boot-application") version "4.5.0"
