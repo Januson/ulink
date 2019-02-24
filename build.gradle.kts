@@ -23,7 +23,28 @@ configure<JavaPluginConvention> {
 
 jacoco {
     toolVersion = "0.8.2"
+    reportsDir = file("$buildDir/customJacocoReportDir")
 }
+
+tasks.jacocoTestReport {
+    reports {
+        xml.isEnabled = false
+        csv.isEnabled = false
+        html.destination = file("${buildDir}/jacocoHtml")
+    }
+}
+
+//tasks.withType<JacocoReport> {
+//    reports {
+//        xml.isEnabled = false
+//        csv.isEnabled = false
+//        html.apply {
+//            isEnabled = true
+//            destination = file("$buildDir/jacocoHtml")
+//        }
+//        executionData(tasks.withType<Test>())
+//    }
+//}
 
 checkstyle {
     toolVersion = "8.16"
@@ -31,6 +52,12 @@ checkstyle {
 
 spotbugs {
     toolVersion = "3.1.10"
+}
+
+sonarqube {
+    properties {
+        System.setProperty("sonar.login", System.getenv("SONAR_KEY"))
+    }
 }
 
 tasks.withType<Wrapper> {

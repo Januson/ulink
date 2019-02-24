@@ -24,7 +24,7 @@ jobs:
           command: sudo chmod +x ./gradlew
       - run:
           name: Run Tests
-          command: ./gradlew test
+          command: ./gradlew test sonarQube
 
 workflows:
   version: 2
