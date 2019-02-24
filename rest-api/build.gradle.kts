@@ -3,17 +3,23 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
     java
+    id("org.springframework.boot") version "2.1.3.RELEASE"
+    id("io.spring.dependency-management") version "1.0.6.RELEASE"
+    id("com.bmuschko.docker-spring-boot-application") version "4.5.0"
 }
 
 val moduleName = "org.ulink.rest.api"
-
-val junitVersion = "5.3.2"
 
 repositories {
     jcenter()
 }
 
+val junitVersion = "5.3.2"
+
 dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+
     testImplementation("org.assertj:assertj-core:3.11.1")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
@@ -22,6 +28,19 @@ dependencies {
 configure<JavaPluginConvention> {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
+}
+
+springBoot {
+    mainClassName = "org.ulink.UlinkApplication"
+    buildInfo()
+}
+
+docker {
+    springBootApplication {
+        baseImage.set("openjdk:11-jre-slim")
+        ports.set(listOf(9090, 8080))
+        tag.set("ulink:0.0.1")
+    }
 }
 
 //tasks.withType<JavaCompile> {

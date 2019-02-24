@@ -12,6 +12,7 @@ val spekVersion = "2.0.0"
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
+    testImplementation("io.github.rybalkinsd:kohttp:0.7.1")
 
     testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
     testImplementation("org.spekframework.spek2:spek-dsl-jvm:$spekVersion")
